@@ -2,7 +2,12 @@ import { HeaderPage } from "./styles";
 import { useState, useRef, useEffect } from "react";
 import quack from "./sounds/quack.mp3";
 import useSound from "use-sound";
-export function Header() {
+import Confetti from "react-confetti";
+
+interface IHeaderProps {
+  handleStartAnimation: () => void;
+}
+export function Header({ handleStartAnimation }: IHeaderProps) {
   const [play] = useSound(quack);
   return (
     <HeaderPage>
@@ -10,10 +15,15 @@ export function Header() {
       <span
         className="yellow"
         onClick={() => {
-          play()
+          play();
         }}
       ></span>
-      <span className="green"></span>
+      <span
+        className="green"
+        onClick={() => {
+          handleStartAnimation();
+        }}
+      ></span>
     </HeaderPage>
   );
 }
